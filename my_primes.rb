@@ -23,9 +23,7 @@ module MyPrimes
 		else # our test will consist of looking for a number less than n (starting with 3) that divides evenly into n
 			i = 3
 			while i*i <= num # stop after we get to sqrt(i)
-				if num % i == 0
-					return false
-				end
+				return false if num % i == 0
 				i += 2 # skip even factors
 			end
 			return true
@@ -36,11 +34,15 @@ module MyPrimes
 	# as factors is redundant, since this is equivalant to trying the component primes multiple times (duplicate work). So instead, we only test
 	# whether a num is divisible by the primes we've found so far (which will be every prime less than num)
 	def faster_prime?(num, primes)
-		primes.each do |p|
-			break if p*p > num # we can still stop looking once we get to sqrt(num)
-			return false if num % p == 0
+		if num != 2 and num % 2 == 0
+			return false
+		else
+			primes.each do |p|
+				break if p*p > num # we can still stop looking once we get to sqrt(num)
+				return false if num % p == 0
+			end
+			return true
 		end
-		return true
 	end
 
 	def print_table(primes)

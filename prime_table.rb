@@ -10,5 +10,4 @@ elsif not ARGV[0].match(/^\d+$/)
 	puts "Invalid argument. <N> must be a positive integer.#{usage}"
 end
 exit if ARGV[0].to_i < 1 # exit unles we want at least one prime
-
 print_table(find_primes(ARGV[0].to_i))

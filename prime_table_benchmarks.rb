@@ -3,7 +3,7 @@ require 'my_primes'
 require 'benchmark'
 include MyPrimes
 
-nums = [1000,5000,100000,500000,1000000]
+nums = [50,100,1000,5000,100000,500000,1000000]
 results = []
 nums.each do |num|
 	result = []
