@@ -5,16 +5,21 @@ Simple tool to calculate the first n prime numbers, and print them out in multip
 `prime_table.rb <N>`  
 Where	<N> : Number of primes to include in multiplication table
 
+**Complexity**  
+I believe the time complexity for Alg. 1 below would be `O(k*sqrt(k))` where k is the value of the nth prime number (aka the largest prime number found, aka the last number tested for primality, aka the total number of numbers tested for primality). Ideally I'd like to determine the complexity based on n (the number of primes found) since that's what the user is inputting, but I'm not sure how to make that determination mathematically.  
+Similarly, for Alg. 2 the time complexity would be something like: "`O(k*n)` where k is the same as above, and n is the number of primes less than or equal to k." Tehnically, the complexity is better than this in practice, since we still have a "square root shortcut" similar to Alg. 1, but in this case the shortcut is based off of the *value* of the *nth* prime, and I'm honestly not sure how to express that in terms of n or k.  
+Finally, the space complexity would be linear with the number of primes desired (i.e. `O(n)`), since we're storing each prime we find in an array as we go.
 
-## Running spec
-prime_table uses RSpec for its tests, so you'll need to install the rspec gem (gem install rspec). Then, simply run rspec in the main project directory (or alternatively, run the spec file explicitly via "rspec prime_table_spec.rb")
+## Running specs
+prime_table uses RSpec for its tests, so you'll need to install the rspec gem (gem install rspec). Then, simply run the following command to run the set of spec tests:  
+`rspec prime_table_spec.rb`
 
 ## Running benchmark script
-I also wrote a benchmark tool for fun, since I implemented two slightly different algorithms for determining primality and wanted to see how the performance compared between the two. 
+I also wrote a benchmark tool for fun, since I implemented two slightly different algorithms for determining primality and wanted to see how the performance compared between the two. To run the benchmark tests, run the following command from the base directory:  
+`ruby prime_table_benchmarks.rb`
 
 ### Alg. 1 (aka "slow" algorithm):
-Our basic test consists of looking for a number x less than num (starting with 3) that divides evenly into num. If we find such an x, we return false. Otherwise, if we reach num without returning, we know num is prime. We also take a couple shortcuts to speed up the algorithm:
-
+Our basic test consists of looking for a number x less than num (starting with 3) that divides evenly into num. If we find such an x, we return false. Otherwise, if we reach num without returning, we know num is prime. We also take a couple shortcuts to speed up the algorithm:  
 Shortcuts:
 - If num is even, it cannot be prime (since all even numbers are divisible by 2)
 - We can stop looking after we get to sqrt(num) since this represents the largest possible x that will not simply be a repeat of an earlier combination of factors
